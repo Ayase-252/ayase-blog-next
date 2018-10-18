@@ -1,0 +1,585 @@
+blockquote,
+body,
+button form,
+code,
+dd,
+div,
+dl,
+dt,
+fieldset,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+td,
+textarea,
+th,
+ul {
+  padding: 0;
+  margin: 0;
+}
+/* Modified as appropriate */
+body {
+  background: #f5f5f5;
+  color: #333;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-family: "Microsoft Yahei", sans-serif;
+}
+/* A short reference values: 'or"" */
+q:after,
+q:before {
+  content: "";
+}
+/* Abbreviations, pictures without borders */
+abbr,
+acronym,
+fieldset,
+img {
+  border: 0 none;
+}
+abbr,
+acronym {
+  font-variant: normal;
+}
+legend {
+  color: #000;
+}
+/* Remove special marking the font and font size */
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-weight: normal;
+  font-style: normal;
+}
+/* Superscript and subscript */
+sup {
+  vertical-align: text-top;
+}
+sub {
+  vertical-align: text-bottom;
+}
+/* The frame table were combined into a single frame, specify the separation between the cell border boundary in the model of distance is 0*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* The table header and content of the left shows */
+caption,
+th {
+  text-align: left;
+}
+img,
+input,
+select {
+  vertical-align: middle;
+}
+/* Clear list style */
+ol,
+ul {
+  list-style: none;
+}
+/* The input control fonts */
+button,
+input,
+optgroup,
+option,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+/* The caption element style clearance */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: 100%;
+}
+/* Link style, color can be modified as appropriate */
+a,
+del,
+ins {
+  text-decoration: none;
+}
+input[type="submit"] {
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+}
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+.clear {
+  clear: both;
+}
+body {
+  background-color: #f5f5f5;
+}
+body * {
+  -webkit-font-smoothing: antialiased;
+}
+body a {
+  color: #6aa897;
+  text-decoration: none;
+}
+.content {
+  margin: 6% 0 6% 300px;
+}
+@media screen and (max-width: 1100px) {
+  .content {
+    margin-left: 250px;
+  }
+}
+@media screen and (max-width: 930px) {
+  .content {
+    margin: 7%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .content {
+    margin: 0;
+    max-width: none;
+    width: auto;
+  }
+}
+.content .content-inner {
+  width: 800px;
+  max-width: 84%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 930px) {
+  .content .content-inner {
+    max-width: none;
+    margin: 0;
+    width: auto;
+  }
+}
+.navigation {
+  position: fixed;
+  background-color: #6aa897;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 220px;
+  padding: 6% 40px;
+  font-family: "Microsoft Yahei", Tahoma, Geneva, sans-serif;
+}
+.navigation a:hover {
+  color: #fff;
+}
+.navigation .nav-inner h1 {
+  font-weight: 700;
+  font-size: 1.5em;
+  line-height: 1;
+  text-align: right;
+}
+.navigation .nav-inner h1 a {
+  color: #fff;
+}
+.navigation .nav-inner h1::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 30px 0;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+@media screen and (max-width: 930px) {
+  .navigation .nav-inner h1 {
+    margin-right: 100px;
+    text-align: left;
+  }
+  .navigation .nav-inner h1::after {
+    display: none;
+  }
+}
+.navigation .nav-inner .nav-toggle {
+  display: none;
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+@media screen and (max-width: 930px) {
+  .navigation .nav-inner .nav-toggle {
+    display: block;
+    position: absolute;
+    right: 7%;
+    top: 43px;
+    margin-top: -6px;
+  }
+}
+.navigation .nav-inner .nav-menu a {
+  display: block;
+  font-size: 0.9em;
+  font-weight: 700;
+  color: #fff;
+  color: rgba(255, 255, 255, 0.6);
+}
+.navigation .nav-inner .nav-menu a:hover {
+  color: #fff;
+}
+.navigation .nav-inner .nav-menu li:first-child {
+  margin-top: 0;
+}
+.navigation .nav-inner .nav-menu li {
+  margin-top: 20px;
+  text-align: right;
+}
+@media screen and (max-width: 930px) {
+  .navigation .nav-inner .nav-menu {
+    display: none;
+    width: 100%;
+    position: relative;
+    margin-top: 50px;
+    z-index: 10;
+  }
+  .navigation .nav-inner .nav-menu li {
+    text-align: left;
+  }
+}
+@media screen and (min-width: 931px) {
+  .navigation .nav-inner .nav-menu {
+    display: block !important;
+  }
+}
+.navigation .nav-inner .nav-mobile-menu-bg {
+  display: none;
+}
+@media screen and (max-width: 930px) {
+  .navigation .nav-inner .nav-mobile-menu-bg {
+    content: " ";
+    position: absolute;
+    top: 85px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #333;
+    z-index: 2;
+  }
+}
+@media screen and (max-width: 930px) {
+  .navigation .nav-inner {
+    width: auto;
+    max-width: 86%;
+    margin: 0 auto;
+    overflow-x: visible;
+  }
+}
+.navigation footer {
+  font-size: 13px;
+  color: #fff;
+  color: rgba(255, 255, 255, 0.25);
+  position: absolute;
+  bottom: 6%;
+  right: 40px;
+}
+.navigation footer a {
+  color: #fff;
+  color: rgba(255, 255, 255, 0.25);
+}
+@media screen and (max-width: 930px) {
+  .navigation footer {
+    display: none;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .navigation {
+    width: 200px;
+    padding: 6% 25px;
+  }
+}
+@media screen and (max-width: 930px) {
+  .navigation {
+    width: 100%;
+    padding: 30px 0;
+    position: relative;
+    z-index: 1;
+  }
+}
+body a {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-tansition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+.post .post-header a,
+.post a.post-btn {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-tansition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.post {
+  margin-bottom: 10%;
+  background-color: #fff;
+}
+.post .post-inner {
+  padding: 8%;
+}
+.post .post-inner .post-header {
+  margin-bottom: 40px;
+  line-height: 1.5em;
+}
+.post .post-inner .post-header datetime {
+  font-size: 0.9em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #999;
+}
+.post .post-inner .post-header ul {
+  float: right;
+}
+.post .post-inner .post-header ul li {
+  display: inline;
+  font-size: 0.9em;
+  font-weight: 600;
+  padding: 1px 2px;
+  background: #999;
+  color: #fff;
+  border-radius: 3px;
+}
+.post .post-inner .post-header h2 {
+  font-size: 2em;
+  line-height: 1.2em;
+  font-weight: 700;
+  letter-spacing: -1px;
+  word-break: break-word;
+  -ms-word-break: break-word;
+}
+.post .post-inner .post-header a {
+  color: #222;
+}
+.post .post-inner .post-header a:hover {
+  color: #6aa897;
+}
+.post .post-inner .post-content {
+  font-size: 1.25em;
+  font-family: Georigiam,Times,KaiTi,STKaiTi,serif;
+  color: #444;
+}
+.post .post-inner .post-content > *:first-child {
+  margin-top: 0;
+}
+.post .post-inner .post-content > *:last-child {
+  margin-bottom: 0;
+}
+.post .post-inner .post-content p,
+.post .post-inner .post-content blockquote,
+.post .post-inner .post-content ul,
+.post .post-inner .post-content ol,
+.post .post-inner .post-content address,
+.post .post-inner .post-content dl,
+.post .post-inner .post-content pre {
+  line-height: 1.6em;
+  margin-bottom: 1.3em;
+}
+.post .post-inner .post-content pre,
+.post .post-inner .post-content code {
+  font-family: Consolas, Monaco, monospace;
+}
+.post .post-inner .post-content hr {
+  display: block;
+  width: 96px;
+  height: 3px;
+  background: #ddd;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  border: none;
+}
+.post .post-inner .post-content h1,
+.post .post-inner .post-content h2,
+.post .post-inner .post-content h3,
+.post .post-inner .post-content h4,
+.post .post-inner .post-content h5,
+.post .post-inner .post-content h6 {
+  font-family: "Microsoft Yahei", sans-serif;
+  margin: 50px 0 20px;
+  line-height: 1.2em;
+  font-weight: 700;
+  color: #333;
+}
+.post .post-inner .post-content h1 {
+  font-size: 1.75em;
+}
+.post .post-inner .post-content h2 {
+  font-size: 1.5em;
+}
+.post .post-inner .post-content h3 {
+  font-size: 1.25em;
+}
+.post .post-inner .post-content h4 {
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.post .post-inner .post-content h5 {
+  font-size: 1em;
+  font-weight: 400;
+}
+.post .post-inner .post-content h6 {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: #666;
+  margin-bottom: 10px;
+}
+.post .post-inner .post-content blockquote {
+  padding: 30px 30px 30px 90px;
+  background: #f6f6f6f;
+  background: rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+.post .post-inner .post-content blockquote p {
+  color: #666;
+  font-style: italic;
+}
+.post .post-inner .post-content blockquote cite {
+  font-family: "Microsoft Yahei", "MS Gothic", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+}
+.post .post-inner .post-content blockquote cite::before {
+  content: "-";
+}
+.post .post-inner .post-content blockquote::before {
+  content: '”';
+  display: block;
+  width: 90px;
+  font-family: Georigiam,Times,KaiTi,STKaiTi,serif;
+  font-size: 72px;
+  font-weight: 700;
+  color: #aaa;
+  text-align: center;
+  position: absolute;
+  top: 32px;
+  left: 0;
+}
+.post .post-inner .post-content ul,
+.post .post-inner .post-content ol {
+  margin-left: 2em;
+}
+.post .post-inner .post-content li {
+  margin-bottom: 0.75em;
+}
+.post .post-inner .post-content ol {
+  list-style: decimal;
+}
+.post .post-inner .post-content ol .post .post-inner .post-content ol {
+  list-style: lower-alpha;
+}
+.post .post-inner .post-content ul {
+  list-style: disc;
+}
+.post .post-inner .post-content ul .post .post-inner .post-content ul {
+  list-style: circle;
+}
+.post .post-inner .post-content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  font-family: "Microsoft Yahei", sans-serif;
+  font-size: 0.95rem;
+  width: 100%;
+}
+.post .post-inner .post-content table tr:nth-child(2n+3) {
+  background: #f6f6f6;
+}
+.post .post-inner .post-content th,
+.post .post-inner .post-content td {
+  padding: 2%;
+  margin: 0;
+  overflow: visible;
+  line-height: 120%;
+  border-bottom: 1px solid #eee;
+}
+.post .post-inner .post-content th {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.post .post-inner .post-content code {
+  font-size: 14px;
+  line-height: 1.2em;
+  position: relative;
+}
+.post .post-inner .post-content li > code,
+.post .post-inner .post-content p > code {
+  background: rgba(0, 0, 0, 0.04);
+  color: #333;
+  border-radius: 2px;
+}
+.post .post-btn {
+  padding: 15px 20px;
+  background: #444;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #fff;
+  font-family: "Microsoft Yahei", sans-serif;
+}
+.post .post-btn:hover {
+  background: #6aa897;
+}
+.post .block-notice {
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+  padding: 20px;
+  margin-bottom: 1.3em;
+}
+.post .block-notice h4 {
+  margin: 20px 20px;
+  font-size: 1.1em;
+}
+.post .block-notice p {
+  margin: 10px 20px;
+  font-size: 0.8em;
+}
+.post .block-notice-caution {
+  border-left-color: #f0ad4e;
+}
+.post .block-notice-caution h4 {
+  color: #f0ad4e !important;
+}
+.post .block-notice-danger {
+  border-left-color: #d9534f;
+}
+.post .block-notice-danger h4 {
+  color: #d9534f !important;
+}
+.post .block-notice-info {
+  border-left-color: #5bc0de;
+}
+.post .block-notice-info h4 {
+  color: #5bc0de !important;
+}
+.post .block-notice-success {
+  border-left-color: #5cb85c;
+}
+.post .block-notice-success h4 {
+  color: #5cb85c !important;
+}

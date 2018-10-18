@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+<head>
+    <meta charset="uft-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>{{ page_title }} | {{ site.name }}</title>
+    <link rel="stylesheet" href="{% static 'ayase-blog/css/style-new.css'%}">
+    <link rel="stylesheet" href="{% static 'ayase-blog/css/solarized-dark.css'%}">
+</head>
+
+<body id="main-wrapper">
+    <nav class="navigation">
+        <div class="nav-inner">
+            <a href="#" class="nav-toggle">
+                <p>MENU</p>
+            </a>
+            <h1><a href="#">{{ site.name }}</a></h1>
+            <ul class="nav-menu">
+                <li><a href="{% url 'ayase-blog:index' %}">Home</a></li>
+                {% for category in categories %}
+                <li><a href="{% url 'ayase-blog:category' category.url %}">{{ category.name }}</a></li>
+                {% endfor %}
+                <li><a href="{% url 'ayase-blog:about' %}">About</a></li>
+            </ul>
+            <div class="nav-mobile-menu-bg"></div>
+        </div>
+        <footer>
+            Powered by django
+            <br> Theme adopted from Rams
+            <br> Copyright &copy; 2016 <a href="#">Ayase-252</a>
+        </footer>
+    </nav>
+    <div class="content">
+        <div class="content-inner">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <script src="{% static 'ayase-blog/js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'ayase-blog/js/highlight.pack.js' %}"></script>
+    <script src="{% static 'ayase-blog/js/site.js' %}"></script>
+</body>
+
+</html>

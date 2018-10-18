@@ -1,0 +1,39 @@
+{% extends "base_new.html" %}
+
+{% block content %}
+<article class="post">
+    <div class="post-inner">
+        <div class="post-header">
+            <datetime>{{ post.date }}</datetime>
+            {% if post.tags %}
+                <ul>
+                {% for tag in post.tags%}
+                <li>{{ tag }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <h2>{{ post.title }}</h2>
+        </div>
+        <div class="post-content">
+            {% if post.callout %}
+                {% if post.callout.level == 'N' %}
+                    <div class="block-notice block-notice-info">
+                {% endif %}
+                {% if post.callout.level == 'W' %}
+                    <div class="block-notice block-notice-caution">
+                {% endif %}
+                {% if post.callout.level == 'D' %}
+                    <div class="block-notice block-notice-danger">
+                {% endif %}
+                {% if post.callout.level == 'R' %}
+                    <div class="block-notice block-notice-success">
+                {% endif %}
+                        <h4>{{ post.callout.title }}</h4>
+                        <p>{{ post.callout.content }}</p>
+                    </div>
+            {% endif %}
+            {{ post.content|safe }}
+        </div>
+    </div>
+</article>
+{% endblock content%}

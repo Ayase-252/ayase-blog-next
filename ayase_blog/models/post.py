@@ -142,7 +142,7 @@ class Post(models.Model):
     postId = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)
     tags = models.CharField(max_length=100)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     date = models.DateTimeField()
     content = models.TextField()
     callout = models.ForeignKey(CallOut, on_delete=models.CASCADE,

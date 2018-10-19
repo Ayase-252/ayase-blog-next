@@ -1,10 +1,8 @@
 <template>
   <div class="wrapper">
-    <navigator></navigator>
-    <div class="content-wrapper">
-      <div class="content-inner-wrapper">
+    <navigator class="left-flex-elem"></navigator>
+    <div class="right-flex-elem">
         <router-view></router-view>
-      </div>
     </div>
   </div>
 </template>
@@ -31,18 +29,28 @@ export default {
 
 .wrapper {
   width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
   background-color: @bg-color;
-}
-
-.content-wrapper {
-  margin: 0 0 0 300px;
   min-height: 100vh;
 }
 
-.content-inner-wrapper {
-  width: 880px;
-  max-width: 84%;
-  margin: 0 auto;
-  padding-top: @content-to-top;
+.left-flex-elem {
+  flex: 0 0 300px;
+}
+
+.right-flex-elem {
+  flex: 1 1;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-flow: column nowrap;
+  }
+
+  .left-flex-elem {
+    height: 50px;
+    flex: 0;
+  }
 }
 </style>

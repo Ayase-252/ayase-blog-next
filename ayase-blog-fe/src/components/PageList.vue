@@ -23,6 +23,6 @@ export default {
 
 <style lang="less" scoped>
 #page-list {
-  width: 100%;
+  padding: 30px 8% 0 8%;
 }
 </style>

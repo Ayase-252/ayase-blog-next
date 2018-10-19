@@ -26,11 +26,6 @@ export default {
 @import '~styles/variables.less';
 
 nav {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 300px;
   font-family: "Microsoft Yahei", Tahoma, Geneva, sans-serif;
   background-color: @main-color;
 }

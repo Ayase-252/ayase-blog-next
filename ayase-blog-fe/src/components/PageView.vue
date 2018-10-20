@@ -12,7 +12,7 @@ import {PageApi} from '@/api/page_api'
 export default {
   data: function () {
     return {
-      title: '',
+      title: 'Default',
       content: ''
     }
   },
@@ -24,8 +24,14 @@ export default {
   components: {
     PageDisplay
   },
+  watch: {
+    title(olderValue, newValue) {
+      document.title = this.title
+    }
+  },
   created () {
     const vm = this
+    document.title = this.title
     PageApi.requestPage(1).then(function (res) {
       vm.title = res.data.title
       vm.content = res.data.content

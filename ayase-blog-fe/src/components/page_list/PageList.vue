@@ -1,17 +1,27 @@
 <template>
-<div id="page-list">
+<div>
   <page-item v-for="(page, idx) in pages" v-bind:key="idx" v-bind="page"></page-item>
 </div>
 </template>
 
 <script>
 import PageItem from './PageItem'
+
 export default {
   data: function () {
     return {
       pages: [{
         title: 'Hello world',
         content: 'Hello world TOOOO'
+      }, {
+        title: 'another post',
+        content: 'hello'
+      }, {
+        title: 'another post',
+        content: 'hello'
+      }, {
+        title: 'Ohhhhh NOOOOOOOO',
+        content: 'hello'
       }]
     }
   },
@@ -21,8 +31,5 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-#page-list {
-  padding: 30px 8% 0 8%;
-}
+<style lang="less">
 </style>

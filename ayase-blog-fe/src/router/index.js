@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import BaseLayout from '@/components/BaseLayout'
-import PageList from '@/components/PageList'
-import PageView from '@/components/PageView'
+import Layout from '@/components/Layout'
+import PageList from '@/components/page_list/PageList'
+import PageDisplay from '@/components/page_display/PageDisplay'
 
 Vue.use(Router)
 
@@ -11,14 +11,14 @@ export default new Router({
     {
       path: '/',
       name: 'homepage',
-      component: BaseLayout,
+      component: Layout,
       children: [{
         path: '',
         component: PageList
       }, {
         path: 'post/:id',
         name: 'postview',
-        component: PageView,
+        component: PageDisplay,
         props: true
       }]
     }

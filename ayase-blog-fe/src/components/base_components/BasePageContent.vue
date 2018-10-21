@@ -18,7 +18,6 @@ export default {
   font-size: 1.25em;
   font-family: Georigiam, Times, KaiTi, STKaiTi, serif;
   color: #444; // Post Style Specification
-  margin-bottom: 30px;
   & > *:first-child {
     margin-top: 0;
   }

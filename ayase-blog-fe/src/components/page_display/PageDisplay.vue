@@ -1,19 +1,21 @@
 <template>
-  <article>
-    <h2>Hello world</h2>
-    <page-display v-bind:content="content"></page-display>
+  <article class="page-display">
+    <base-page-header v-bind="{time, title}"></base-page-header>
+    <base-page-content v-bind:content="content"></base-page-content>
   </article>
 </template>
 
 <script>
-import PageDisplay from './PageDisplay'
+import BasePageContent from '../base_components/BasePageContent'
+import BasePageHeader from '../base_components/BasePageHeader'
 import {PageApi} from '@/api/page_api'
 
 export default {
   data: function () {
     return {
+      time: '2018-09-30 19:02',
       title: 'Default',
-      content: ''
+      content: '<p>Hello world <em>hello world</em><strong>Virtual DOM</strong></p>'
     }
   },
   props: {
@@ -22,7 +24,7 @@ export default {
     }
   },
   components: {
-    PageDisplay
+    BasePageContent, BasePageHeader
   },
   watch: {
     title(olderValue, newValue) {
@@ -43,13 +45,9 @@ export default {
 </script>
 
 <style lang="less">
-article {
+.page-display {
   background-color: #fff;
   padding: 64px;
-}
-
-h2 {
-  font-size: 1.5em;
 }
 </style>
 

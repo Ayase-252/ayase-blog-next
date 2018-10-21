@@ -1,0 +1,3 @@
+"""
+Initializing code for test
+"""

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+<head>
+    <meta charset="uft-8">
+    <title>{{ page_title }} | Ayase 252's home</title>
+    <link rel="stylesheet" href="{% static 'ayase-blog/css/style-new.css'%}">
+    <link rel="stylesheet" href="{% static 'ayase-blog/css/solarized-dark.css'%}">
+</head>
+
+<body id="main-wrapper">
+    <nav class="navigation">
+        <div class="nav-inner">
+            <a href="#" class="nav-toggle">
+                <p>MENU</p>
+            </a>
+            <h1><a href="#">Ayase's Zone</a></h1>
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Programming</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <div class="nav-mobile-menu-bg"></div>
+        </div>
+        <footer>
+            Powered by django
+            <br> Theme adopted from Rams
+            <br> Copyright &copy; 2016 <a href="#">Ayase-252</a>
+        </footer>
+    </nav>
+    <div class="content">
+        <div class="content-inner">
+            <article class="post">
+                <div class="post-inner">
+                    <div class="post-header">
+                        <h2><a href="#">Style Guide</a></h2>
+                    </div>
+                    <div class="block-notice block-notice-caution">
+                        <h4>Draft/草稿</h4>
+                        <p>This post is a draft currently. The content may be inaccuarate and misleading.</p>
+                        <p>本文是一篇草稿，可能包含不准确的信息。</p>
+                    </div>
+                    <div class="block-notice block-notice-danger">
+                        <h4>Depracated/不赞成</h4>
+                        <p>This content of the article is out of date now, and cannot be reliable reference now.</p>
+                        <p>本文内容已经过时，无法再作为参考。</p>
+                    </div>
+                    <div class="block-notice block-notice-info">
+                        <h4>Notice/提示</h4>
+                        <p>This content is not under warranty.</p>
+                        <p>本文内容不作保证。</p>
+                    </div>
+                    <div class="block-notice block-notice-success">
+                        <h4>Recommoned/推荐</h4>
+                        <p>The method metioned in following is recommoned.</p>
+                        <p>推荐使用下文中提到的方法。</p>
+                    </div>
+                    <div class="post-content">
+                        <p>This style guide demonstrates the default presentation
+                            of elements in Rams. The page can also be used as a
+                            blueprint for how to present content within the
+                            theme in an effective way.</p>
+                        <hr>
+                        <h1>Heading 1</h1>
+                        <h2>Heading 2</h2>
+                        <h3>Heading 3</h3>
+                        <h4>Heading 4</h4>
+                        <h5>Heading 5</h5>
+                        <h6>Heading 6</h6>
+                        <hr>
+                        <h3>Blockquote</h3>
+                        <blockquote>
+                            <p>“Among the numerous luxuries of the table…coffee
+                                may be considered as one of the most valuable.
+                                It excites cheerfulness without intoxication;
+                                and the pleasing flow of spirits which it occasions…is
+                                never followed by sadness, languor or debility.”
+                            </p>
+                            <cite>Benjiamin Franklin</cite>
+                        </blockquote>
+                        <p>UTF-8 characters test</p>
+                        <blockquote>
+                            <p>μ'sic forever！ わすれないで。君と僕の足跡'</p>
+                            <cite>μ's-'ミはμ'sicのミ'</cite>
+                        </blockquote>
+                        <blockquote>
+                            <p>有朋自远方来，不亦说乎</p>
+                            <cite>孔子-《论语》</cite>
+                        </blockquote>
+                        <hr>
+                        <h3>Ordered List</h3>
+                        <ol>
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                        </ol>
+                        <h3>Unordered List</h3>
+                        <ul>
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                        </ul>
+                        <hr>
+                        <h3>Table Styles</h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Header 1</th>
+                                    <th>Header 2</th>
+                                    <th>Header 3</th>
+                                </tr>
+                                <tr>
+                                    <td>Division 1</td>
+                                    <td>Division 2</td>
+                                    <td>Division 3</td>
+                                </tr>
+                                <tr>
+                                    <td>Division 1</td>
+                                    <td>Division 2</td>
+                                    <td>Division 3</td>
+                                </tr>
+                                <tr>
+                                    <td>Division 1</td>
+                                    <td>Division 2</td>
+                                    <td>Division 3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h3>Code Highlight</h3>
+                        <pre><code>
+int main(int argc, char **argv){
+    print("hello world");
+    return 0;
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <script src="{% static 'ayase-blog/js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'ayase-blog/js/highlight.pack.js' %}"></script>
+    <script src="{% static 'ayase-blog/js/site.js' %}"></script>
+</body>
+
+</html>

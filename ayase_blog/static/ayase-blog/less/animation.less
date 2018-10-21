@@ -1,0 +1,17 @@
+.transition(@shorthand) {
+    -webkit-transition: @shorthand;
+    -moz-transition: @shorthand;
+    -o-tansition: @shorthand;
+    transition: @shorthand;
+}
+body {
+    a {
+        .transition(all 0.1s ease-in-out);
+    }
+}
+.post {
+    .post-header a,
+    a.post-btn {
+        .transition(all 0.2s ease-in-out);
+    }
+}

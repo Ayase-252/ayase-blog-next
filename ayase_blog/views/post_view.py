@@ -1,3 +1,5 @@
+import json
+
 from django.views import View
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse, HttpResponseNotFound, \
@@ -12,19 +14,16 @@ class PostView(View):
         try:
             post = Post.data_api.get_post_by_post_id(post_id)
         except:
-            if request.is_ajax():
-                return HttpResponseNotFound(json.dumps({'error': 'Page not found'}))
-            else:
-                raise Http404
+            raise Http404
         if request.is_ajax():
-            return HttpResponse(post.get_json())
-        else:
-            context = libs.get_common_context(post.title)
-            context.update({
-                'post': post.get_post(),
-            })
-
-            return render(request, 'post_new.html', context)
+            if 'application/json' in request.META['HTTP_ACCEPT']:
+                post = post.get_post()
+                res = json.dumps({
+                    'postId': post['id'],
+                    'title': post['title'],
+                    'content': post['content']
+                })
+                return HttpResponse(res, content_type='application/json')
 
 
 class PostsView(View):
@@ -43,9 +42,11 @@ class PostsView(View):
         except:
             return HttpResponseServerError()
 
+        posts = [post.get_post() for post in posts]
+
         res = {
             'num_page': len(posts),
-            'pages': posts
+            'pages': [{'postId': post['id'], 'title': post['title'], 'content': post['content'] } for post in posts]
         }
 
-        return HttpResponse(res)
+        return HttpResponse(json.dumps(res), content_type='application/json')

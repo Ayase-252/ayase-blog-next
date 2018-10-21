@@ -1,30 +1,44 @@
-import PageApi from'@/api/page_api'
-import Page from '@/model/page'
+import PageApi from '@/api/page_api'
 
 export const PageModule = {
+  namespaced: true,
   privateState: {
-    lastPageIdx: 1
+    nextPageIdx: 0
   },
   state: {
     pageList: [],
     curPage: {}
   },
   mutations: {
-    addPageToList(state, newPage) {
-      state.pageList.append(newPage)
+    addPageToList (state, payload) {
+      state.pageList.append(payload.page)
     },
-    setPageAsCurPage(state, curPage) {
-      state.curPage = curPage
+    setPageAsCurPage (state, payload) {
+      state.curPage = payload.curPage
     }
   },
   actions: {
-    getMorePage(context) {
-      PageApi.requestPage(context.privateState.lastPageIdx + 1).then(
-        res => {
-          const newPage = new Page(res.data)
-          context.commit('addPageToList', newPage)
-        }
-      )
+    getMorePage (context, payload) {
+      PageApi.requestPage(context.privateState.nextPageIdx)
+        .then(res => {
+          context.commit('addPageToList', {
+            page: {
+              title: res.data.title,
+              postId: res.data.post_id,
+              content: res.data.content,
+              pubTime: res.data.pub_time
+            }
+          })
+          context.privateState.nextPageIdx = res.data.post_id - 1 
+        })
+        .catch(error => {
+          payload.onError(error)
+        })
+    },
+    setCurrPage (context, payload) {
+      context.commit('setPageAsCurPage', {
+        curPage: payload.curPage
+      })
     }
   }
 }

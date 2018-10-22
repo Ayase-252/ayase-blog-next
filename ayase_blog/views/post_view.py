@@ -34,12 +34,11 @@ class PostsView(View):
         else:
             from_uid = None
         if 'maxPages' in queries:
-            num_pages = int(queries['maxPages'])
+            max_pages = int(queries['maxPages'])
         else:
-            num_pages = 10
+            max_pages = 10
         try:
-            print(from_uid, num_pages)
-            posts = Post.data_api.get_posts_by_from(from_uid, num_pages)
+            posts = Post.data_api.get_posts_by_from(from_uid, max_pages)
         except:
             return HttpResponseServerError()
 

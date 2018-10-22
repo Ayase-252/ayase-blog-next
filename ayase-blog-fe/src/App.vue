@@ -13,7 +13,6 @@ export default {
 <style>
 @import 'normalize.css';
 
-
 #app {
   font-size: 18px;
 }

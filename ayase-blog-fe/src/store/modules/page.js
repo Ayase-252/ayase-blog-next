@@ -2,38 +2,63 @@ import PageApi from '@/api/page_api'
 
 export const PageModule = {
   namespaced: true,
-  privateState: {
-    nextPageIdx: 0
-  },
   state: {
     pageList: [],
-    curPage: {}
+    curPage: {},
+    nextPageIdx: null,
+    noMorePage: false
   },
   mutations: {
     addPageToList (state, payload) {
-      state.pageList.append(payload.page)
+      state.pageList.push(payload.page)
     },
     setPageAsCurPage (state, payload) {
       state.curPage = payload.curPage
+    },
+    setNextPageIdx (state, idx) {
+      state.nextPageIdx = idx
+    },
+    setNoMorePage (state, val) {
+      state.noMorePage = val
     }
   },
   actions: {
-    getMorePage (context, payload) {
-      PageApi.requestPage(context.privateState.nextPageIdx)
+    getPage (context, payload) {
+      PageApi.requestPage(context.state.nextPageIdx)
         .then(res => {
           context.commit('addPageToList', {
             page: {
               title: res.data.title,
-              postId: res.data.post_id,
+              postId: res.data.postId,
               content: res.data.content,
               pubTime: res.data.pub_time
             }
           })
-          context.privateState.nextPageIdx = res.data.post_id - 1 
+          context.commit('setNextPageIdx', res.data.postId - 1)
         })
         .catch(error => {
           payload.onError(error)
         })
+    },
+    getMorePage (context, payload) {
+      const pageLimit = payload && payload.hasOwnProperty('pageLimit') ? payload.pageLimit : 10
+      if (!context.state.noMorePage) {
+        PageApi.requestMorePage(context.state.nextPageIdx, pageLimit)
+          .then(res => {
+            const numPages = res.data.numPages
+            let nextPageIdx = 0
+            for (let i = 0; i < numPages; i++) {
+              const page = res.data.pages[i]
+              context.commit('addPageToList', {
+                page
+              })
+              nextPageIdx = page.postId - 1
+            }
+            if (pageLimit !== numPages || nextPageIdx === 0) {
+              context.commit('setNoMorePage', true)
+            }
+          })
+      }
     },
     setCurrPage (context, payload) {
       context.commit('setPageAsCurPage', {

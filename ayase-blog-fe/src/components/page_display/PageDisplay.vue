@@ -8,7 +8,7 @@
 <script>
 import BasePageContent from '../base_components/BasePageContent'
 import BasePageHeader from '../base_components/BasePageHeader'
-import {PageApi} from '@/api/page_api'
+import PageApi from '@/api/page_api'
 
 export default {
   data: function () {
@@ -27,7 +27,7 @@ export default {
     BasePageContent, BasePageHeader
   },
   watch: {
-    title(olderValue, newValue) {
+    title (olderValue, newValue) {
       document.title = this.title
     }
   },
@@ -50,5 +50,3 @@ export default {
   padding: 64px;
 }
 </style>
-
-

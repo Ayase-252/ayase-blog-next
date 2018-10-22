@@ -33,8 +33,8 @@ class PostsView(View):
             from_uid = int(queries['from'])
         else:
             from_uid = None
-        if 'max_pages' in queries:
-            num_pages = int(queries['max_pages'])
+        if 'maxPages' in queries:
+            num_pages = int(queries['maxPages'])
         else:
             num_pages = 10
         try:
@@ -45,7 +45,7 @@ class PostsView(View):
         posts = [post.get_post() for post in posts]
 
         res = {
-            'num_page': len(posts),
+            'numPages': len(posts),
             'pages': [{'postId': post['id'], 'title': post['title'], 'content': post['content'] } for post in posts]
         }
 

@@ -38,6 +38,7 @@ class PostsView(View):
         else:
             num_pages = 10
         try:
+            print(from_uid, num_pages)
             posts = Post.data_api.get_posts_by_from(from_uid, num_pages)
         except:
             return HttpResponseServerError()
@@ -48,5 +49,4 @@ class PostsView(View):
             'numPages': len(posts),
             'pages': [{'postId': post['id'], 'title': post['title'], 'content': post['content'] } for post in posts]
         }
-
         return HttpResponse(json.dumps(res), content_type='application/json')

@@ -17,19 +17,28 @@ class TestPostsAPI(TestCase):
     def test_ajax_get(self):
         c = create_AJAX_client()
         response = c.get(reverse('ayase_blog:posts'),
-                         {'from': 3, 'max_pages': 2})
+                         {'from': 3, 'maxPages': 2})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json')
         res = response.json()
-        self.assertEqual(res['num_page'],
-                         2, 'num_page field in response is wrong.')
+        self.assertEqual(res['numPages'],
+                         2, 'numPages field in response is wrong.')
         self.assertEqual([page['postId'] for page in res['pages']], [3, 2])
 
         response = c.get(reverse('ayase_blog:posts'),
-                         {'from': 3, 'max_pages': 4})
+                         {'from': 3, 'maxPages': 4})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json')
         res = response.json()
-        self.assertEqual(res['num_page'],
-                         3, 'num_page field in response is wrong.')
+        self.assertEqual(res['numPages'],
+                         3, 'numPages field in response is wrong.')
         self.assertEqual([page['postId'] for page in res['pages']], [3, 2, 1])
+
+        response = c.get(reverse('ayase_blog:posts'),
+                         {'maxPages': 4})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Type'], 'application/json')
+        res = response.json()
+        self.assertEqual(res['numPages'],
+                         4, 'numPages field in response is wrong.')
+        self.assertEqual([page['postId'] for page in res['pages']], [10, 9, 8, 7])

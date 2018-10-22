@@ -1,5 +1,5 @@
 <template>
-  <div ref="pageListWrapper" v-on:scroll="onScroll">
+  <div ref="pageListWrapper" v-on:scroll="onScroll" v-dynamic-title="`Ayase-blog`">
     <page-item v-for="(page, idx) in pageList" v-bind:key="idx" v-bind="page"></page-item>
   </div>
 </template>

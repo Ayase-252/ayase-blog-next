@@ -8,6 +8,11 @@ import 'normalize.css'
 
 Vue.config.productionTip = false
 
+Vue.directive('dynamic-title', {
+  inserted (el, binding) {
+    document.title = binding.value
+  }
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

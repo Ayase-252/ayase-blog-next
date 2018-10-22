@@ -1,8 +1,10 @@
 <template>
-  <article class="page-display">
-    <base-page-header v-bind="{time, title}"></base-page-header>
-    <base-page-content v-bind:content="content"></base-page-content>
-  </article>
+  <div>
+    <article class="page-display" v-dynamic-title="title + ` | Ayase-blog`">
+      <base-page-header v-bind="{time, title}"></base-page-header>
+      <base-page-content v-bind:content="content"></base-page-content>
+    </article>
+  </div>
 </template>
 
 <script>
@@ -26,14 +28,8 @@ export default {
   components: {
     BasePageContent, BasePageHeader
   },
-  watch: {
-    title (olderValue, newValue) {
-      document.title = this.title
-    }
-  },
   created () {
     const vm = this
-    document.title = this.title
     PageApi.requestPage(1).then(function (res) {
       vm.title = res.data.title
       vm.content = res.data.content

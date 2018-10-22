@@ -1,6 +1,6 @@
 <template>
   <div ref="pageListWrapper">
-    <page-item v-for="(page, idx) in pageList" v-bind:key="idx" v-bind="pageList"></page-item>
+    <page-item v-for="(page, idx) in pageList" v-bind:key="idx" v-bind="page"></page-item>
   </div>
 </template>
 
@@ -12,19 +12,6 @@ import _ from 'lodash'
 export default {
   data: function () {
     return {
-      // pages: [{
-      //   title: 'Hello world',
-      //   content: 'Hello world TOOOO'
-      // }, {
-      //   title: 'another post',
-      //   content: 'hello'
-      // }, {
-      //   title: 'another post',
-      //   content: 'hello'
-      // }, {
-      //   title: 'Ohhhhh NOOOOOOOO',
-      //   content: 'hello'
-      // }]
     }
   },
   computed: {

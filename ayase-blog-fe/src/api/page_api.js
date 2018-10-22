@@ -5,14 +5,16 @@ export default class PageApi {
     return ajax.get(`post/${pageIdx}/`)
   }
 
-  static requestMorePage (lastPageIdx, numPage) {
+  static requestMorePage (nextPageIdx, maxPages) {
     const params = {}
-    if (lastPageIdx !== 0) {
-      params.from = lastPageIdx
+    if (nextPageIdx > 0) {
+      params.from = nextPageIdx
     }
-    if (!numPage) {
-      params.max_page = numPage
+    if (maxPages) {
+      params.maxPages = maxPages
     }
+    console.log(params)
+    console.log(`numPage: ${maxPages}`)
     return ajax.get('posts', {
       params
     })

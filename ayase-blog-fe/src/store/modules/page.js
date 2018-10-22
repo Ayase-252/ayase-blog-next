@@ -41,7 +41,7 @@ export const PageModule = {
         })
     },
     getMorePage (context, payload) {
-      const pageLimit = payload && payload.hasOwnProperty('pageLimit') ? payload.pageLimit : 10
+      const pageLimit = payload && payload.hasOwnProperty('pageLimit') ? payload.pageLimit : 3
       if (!context.state.noMorePage) {
         PageApi.requestMorePage(context.state.nextPageIdx, pageLimit)
           .then(res => {
@@ -49,6 +49,7 @@ export const PageModule = {
             let nextPageIdx = 0
             for (let i = 0; i < numPages; i++) {
               const page = res.data.pages[i]
+              console.log(page.postId)
               context.commit('addPageToList', {
                 page
               })

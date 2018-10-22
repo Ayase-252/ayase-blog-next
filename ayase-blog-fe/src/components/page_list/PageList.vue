@@ -1,5 +1,5 @@
 <template>
-<div>
+<div ref="pageListWrapper">
   <page-item v-for="(page, idx) in pages" v-bind:key="idx" v-bind="page"></page-item>
 </div>
 </template>
@@ -38,7 +38,7 @@ export default {
       'getMorePage'
     ]),
     onScroll () {
-      
+      _.debounce()
     }
   }
 }

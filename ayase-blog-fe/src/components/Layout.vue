@@ -24,8 +24,8 @@ export default {
 </script>
 
 <style lang="less">
-@import '~styles/reset.less';
-@import '~styles/variables.less';
+@import '../styles/variables.less';
+@import '../styles/reset.less';
 
 .wrapper {
   width: 100%;

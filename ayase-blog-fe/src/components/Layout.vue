@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
     <navigator class="left-flex-elem"></navigator>
-    <div class="right-flex-elem content-wrapper">
-        <router-view></router-view>
-    </div>
+    <!-- <div class="right-flex-elem content-wrapper"> -->
+        <router-view class="right-flex-elem content-wrapper"></router-view>
+    <!-- </div> -->
   </div>
 </template>
 

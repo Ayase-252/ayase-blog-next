@@ -2,7 +2,7 @@ import ajax from './ajax'
 
 export default class PageApi {
   static requestPage (pageIdx) {
-    return ajax.get(`post/${pageIdx}/`)
+    return ajax.get(`post/${pageIdx}`)
   }
 
   static requestMorePage (nextPageIdx, maxPages) {
@@ -13,8 +13,6 @@ export default class PageApi {
     if (maxPages) {
       params.maxPages = maxPages
     }
-    console.log(params)
-    console.log(`numPage: ${maxPages}`)
     return ajax.get('posts', {
       params
     })

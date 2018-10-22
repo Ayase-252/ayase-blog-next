@@ -1,5 +1,5 @@
 <template>
-  <div ref="pageListWrapper">
+  <div ref="pageListWrapper" v-on:scroll="onScroll">
     <page-item v-for="(page, idx) in pageList" v-bind:key="idx" v-bind="page"></page-item>
   </div>
 </template>
@@ -24,12 +24,11 @@ export default {
     ...mapActions('page', [
       'getMorePage'
     ]),
-    debouncedScrollHandler: _.debounce(() => {
-      const scrollTop = this.$ref.pageListWrapper.scrollTop
-      const clientHeight = this.$ref.pageListWrapper.clientHeight
-      const scrollHeight = this.$ref.pageListWrapper.scrollHeight
+    debouncedScrollHandler: _.debounce(function () {
+      const scrollTop = this.$refs.pageListWrapper.scrollTop
+      const clientHeight = this.$refs.pageListWrapper.clientHeight
+      const scrollHeight = this.$refs.pageListWrapper.scrollHeight
       if (scrollHeight - (scrollTop + clientHeight) < 50) {
-        console.log('getMorePage is dispatched from scroll headler')
         this.getMorePage({
           onError (err) {
             console.log(err)
@@ -37,7 +36,7 @@ export default {
         })
       }
     }, 500),
-    onScroll () {
+    onScroll (event) {
       this.debouncedScrollHandler()
     }
   },

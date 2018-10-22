@@ -55,6 +55,7 @@ export const PageModule = {
               })
               nextPageIdx = page.postId - 1
             }
+            context.commit('setNextPageIdx', nextPageIdx)
             if (pageLimit !== numPages || nextPageIdx === 0) {
               context.commit('setNoMorePage', true)
             }

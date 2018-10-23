@@ -168,6 +168,7 @@ export default {
   }
   a {
     text-decoration: underline;
+    color: #000;
   }
 }
 </style>

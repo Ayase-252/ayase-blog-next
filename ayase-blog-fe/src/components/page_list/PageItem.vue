@@ -2,7 +2,7 @@
 <article class="page-item">
     <base-page-header v-bind="{title, time}"></base-page-header>
     <base-page-content v-bind:content="first_paragraph"></base-page-content>
-    <router-link class="post-btn page-item-footer" v-bind:to="{ name: 'postview', params: {id: postId}}">Read More</router-link>
+    <router-link class="post-btn page-item-footer" v-bind:to="{ name: 'postview', params: {postId: postId}}">Read More</router-link>
 </article>
 </template>
 

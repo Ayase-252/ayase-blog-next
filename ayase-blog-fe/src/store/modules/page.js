@@ -49,7 +49,6 @@ export const PageModule = {
             let nextPageIdx = 0
             for (let i = 0; i < numPages; i++) {
               const page = res.data.pages[i]
-              console.log(page.postId)
               context.commit('addPageToList', {
                 page
               })

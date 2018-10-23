@@ -61,8 +61,8 @@ class PostManager(models.Manager):
         """
         result = self._get_queryset()
         if from_id is not None:
-            result = result.filter(post_id__lte=from_id).order_by('-post_id')
-        return result[:min(len(result), limit)]
+            result = result.filter(post_id__lte=from_id)
+        return result.order_by('-post_id')[:min(len(result), limit)]
 
 class Post(models.Model):
     """

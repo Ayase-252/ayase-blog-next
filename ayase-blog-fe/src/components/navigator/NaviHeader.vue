@@ -1,5 +1,5 @@
 <template>
-  <div id="navigator">
+  <div class="navigator-header">
     <h1><a href="#">{{title}}</a></h1>
     <ul>
       <li v-for="(navItem, idx) in navItems" v-bind:key="idx">
@@ -31,9 +31,11 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-#navigator {
+<style lang="less">
+
+.navigator-header {
   margin-top: 150px;
+  flex: 0 1 auto;
 }
 
 h1, ul {

@@ -1,25 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import BaseLayout from '@/components/BaseLayout'
-import PageList from '@/components/PageList'
-import PageView from '@/components/PageView'
+import Layout from '@/components/Layout'
+import PageList from '@/components/page_list/PageList'
+import PageDisplay from '@/components/page_display/PageDisplay'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'homepage',
-      component: BaseLayout,
+      component: Layout,
       children: [{
         path: '',
+        name: 'homepage',
         component: PageList
       }, {
-        path: 'post/:id',
+        path: 'post/:postId',
         name: 'postview',
-        component: PageView,
-        props: true
+        component: PageDisplay,
+        props (route) {
+          const props = {...route.params}
+          props.postId = parseInt(props.postId)
+          return props
+        }
       }]
     }
   ]

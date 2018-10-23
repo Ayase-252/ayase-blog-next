@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '~styles/variables.less';
+@import '../../styles/variables.less';
 
 nav {
   font-family: "Microsoft Yahei", Tahoma, Geneva, sans-serif;

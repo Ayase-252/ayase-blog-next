@@ -33,11 +33,11 @@ API格式： `/post/:postId`
 
 ## 文章集合
 
-API格式:`/posts?from=number&max_pages=number`
+API格式:`/posts?from=number&maxPages=number`
 
 Query参数：
  - `from` 从哪一篇文章开始获取，用`postId`标识，若忽略，默认从最新的文章开始。（可选）
- - `max_pages` 最多获取文章数。若数据库中文章不足，会返回所有剩余文章。
+ - `maxPages` 最多获取文章数。若数据库中文章不足，会返回所有剩余文章。
 
 ### GET
 
@@ -49,7 +49,7 @@ Query参数：
 
 ```JSON
 {
-    "num_pages": number, // 响应中的文章数
+    "numPages": number, // 响应中的文章数
     "pages": [{
         "title": string,
         "postId": number,

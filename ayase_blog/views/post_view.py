@@ -33,20 +33,19 @@ class PostsView(View):
             from_uid = int(queries['from'])
         else:
             from_uid = None
-        if 'max_pages' in queries:
-            num_pages = int(queries['max_pages'])
+        if 'maxPages' in queries:
+            max_pages = int(queries['maxPages'])
         else:
-            num_pages = 10
+            max_pages = 10
         try:
-            posts = Post.data_api.get_posts_by_from(from_uid, num_pages)
+            posts = Post.data_api.get_posts_by_from(from_uid, max_pages)
         except:
             return HttpResponseServerError()
 
         posts = [post.get_post() for post in posts]
 
         res = {
-            'num_page': len(posts),
+            'numPages': len(posts),
             'pages': [{'postId': post['id'], 'title': post['title'], 'content': post['content'] } for post in posts]
         }
-
         return HttpResponse(json.dumps(res), content_type='application/json')

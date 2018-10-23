@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper">
     <navigator class="left-flex-elem"></navigator>
-    <div class="right-flex-elem">
-        <router-view></router-view>
-    </div>
+    <!-- <div class="right-flex-elem content-wrapper"> -->
+        <router-view class="right-flex-elem content-wrapper"></router-view>
+    <!-- </div> -->
   </div>
 </template>
 
 <script>
-import Navigator from './Navigator'
+import Navigator from './navigator/Navigator'
 export default {
   data: function () {
     return {
@@ -23,16 +23,16 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~styles/reset.less';
-@import '~styles/variables.less';
+<style lang="less">
+@import '../styles/variables.less';
+@import '../styles/reset.less';
 
 .wrapper {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
   background-color: @bg-color;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .left-flex-elem {
@@ -41,9 +41,20 @@ export default {
 
 .right-flex-elem {
   flex: 1 1;
+  overflow: auto;
 }
 
-@media (max-width: 768px) {
+.content-wrapper {
+  padding: 30px 8% 0 8%;
+}
+
+@media (max-width: 1200px) {
+  .content-wrapper {
+    padding: 0;
+  }
+}
+
+@media (max-width: @mobile-width) {
   .wrapper {
     flex-flow: column nowrap;
   }

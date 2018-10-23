@@ -25,9 +25,10 @@ export default {
       'getMorePage'
     ]),
     debouncedScrollHandler: _.debounce(function () {
-      const scrollTop = this.$refs.pageListWrapper.scrollTop
-      const clientHeight = this.$refs.pageListWrapper.clientHeight
-      const scrollHeight = this.$refs.pageListWrapper.scrollHeight
+      const pageListWrapper = this.$refs.pageListWrapper
+      const scrollTop = pageListWrapper.scrollTop
+      const clientHeight = pageListWrapper.clientHeight
+      const scrollHeight = pageListWrapper.scrollHeight
       if (scrollHeight - (scrollTop + clientHeight) < 50) {
         this.getMorePage({
           onError (err) {

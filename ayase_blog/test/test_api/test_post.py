@@ -19,7 +19,7 @@ class TestPostAPI(TestCase):
         self.assertEqual(res['Content-Type'], 'application/json')
         response = json.loads(res.content)
         self.assertEqual(response['title'], 'hello world')
-        self.assertEqual(response['postId'], 1)
+        self.assertEqual(response['post_id'], 1)
 
         # if no page with requested post id
         res = client.get(reverse('ayase_blog:post', kwargs={'post_id': 2}))

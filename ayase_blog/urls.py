@@ -9,6 +9,6 @@ from . import views_legacy
 
 app_name = 'ayase-blog'
 urlpatterns = [
-    path('post/<int:post_id>', PostView.as_view(), name='post'),
+    path('post/<int:post_id>/', PostView.as_view(), name='post'),
     path('posts/', PostsView.as_view(), name='posts'),
 ]

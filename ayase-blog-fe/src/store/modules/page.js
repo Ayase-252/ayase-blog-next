@@ -1,25 +1,29 @@
 import PageApi from '@/api/page_api'
+import ajax from '@/api/ajax'
 
 export const PageModule = {
   namespaced: true,
   state: {
     pageList: [],
     curPage: {},
-    nextPageIdx: null,
-    noMorePage: false
+    noMorePage: false,
+    nextPostsUrl: 'posts/'
   },
   mutations: {
-    addPageToList (state, payload) {
-      state.pageList.push(payload.page)
+    addPageToList (state, page) {
+      state.pageList.push(page)
     },
-    setPageAsCurPage (state, payload) {
-      state.curPage = payload.curPage
+    setPageAsCurPage (state, curPage) {
+      state.curPage = curPage
     },
     setNextPageIdx (state, idx) {
       state.nextPageIdx = idx
     },
     setNoMorePage (state, val) {
       state.noMorePage = val
+    },
+    setNextPostsUrl (state, val) {
+      state.nextPostsUrl = val
     }
   },
   actions: {
@@ -41,23 +45,16 @@ export const PageModule = {
         })
     },
     getMorePage (context, payload) {
-      const pageLimit = payload && payload.hasOwnProperty('pageLimit') ? payload.pageLimit : 3
-      if (!context.state.noMorePage) {
-        PageApi.requestMorePage(context.state.nextPageIdx, pageLimit)
+      if (context.state.nextPostsUrl !== '') {
+        ajax.get(context.state.nextPostsUrl)
           .then(res => {
-            const numPages = res.data.numPages
-            let nextPageIdx = 0
-            for (let i = 0; i < numPages; i++) {
-              const page = res.data.pages[i]
-              context.commit('addPageToList', {
-                page
-              })
-              nextPageIdx = page.postId - 1
+            context.commit('setNextPostsUrl', res.data.next || '')
+            for (const post of res.data.results) {
+              context.commit('addPageToList', post)
             }
-            context.commit('setNextPageIdx', nextPageIdx)
-            if (pageLimit !== numPages || nextPageIdx === 0) {
-              context.commit('setNoMorePage', true)
-            }
+          })
+          .catch(err => {
+            console.log(err)
           })
       }
     },

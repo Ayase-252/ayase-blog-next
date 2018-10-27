@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from ...models.post import Post
-from . util import create_post, create_AJAX_client
+from .util import create_post, create_AJAX_client
 
 
 class TestPostsAPI(TestCase):
@@ -16,29 +16,14 @@ class TestPostsAPI(TestCase):
 
     def test_ajax_get(self):
         c = create_AJAX_client()
-        response = c.get(reverse('ayase_blog:posts'),
-                         {'from': 3, 'maxPages': 2})
+        response = c.get(reverse('ayase_blog:posts'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json')
         res = response.json()
-        self.assertEqual(res['numPages'],
-                         2, 'numPages field in response is wrong.')
-        self.assertEqual([page['postId'] for page in res['pages']], [3, 2])
+        self.assertEqual([page['post_id'] for page in res['results']], [10, 9, 8, 7, 6])
 
-        response = c.get(reverse('ayase_blog:posts'),
-                         {'from': 3, 'maxPages': 4})
+        response = c.get(reverse('ayase_blog:posts'), {'page': 2})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json')
         res = response.json()
-        self.assertEqual(res['numPages'],
-                         3, 'numPages field in response is wrong.')
-        self.assertEqual([page['postId'] for page in res['pages']], [3, 2, 1])
-
-        response = c.get(reverse('ayase_blog:posts'),
-                         {'maxPages': 4})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response['Content-Type'], 'application/json')
-        res = response.json()
-        self.assertEqual(res['numPages'],
-                         4, 'numPages field in response is wrong.')
-        self.assertEqual([page['postId'] for page in res['pages']], [10, 9, 8, 7])
+        self.assertEqual([page['post_id'] for page in res['results']], [5, 4, 3, 2, 1])

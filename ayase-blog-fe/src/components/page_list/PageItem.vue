@@ -1,8 +1,8 @@
 <template>
 <article class="page-item">
-    <base-page-header v-bind="{title, time}"></base-page-header>
+    <base-page-header v-bind="{title, date}"></base-page-header>
     <base-page-content v-bind:content="first_paragraph"></base-page-content>
-    <router-link class="post-btn page-item-footer" v-bind:to="{ name: 'postview', params: {postId: postId}}">Read More</router-link>
+    <router-link class="post-btn page-item-footer" v-bind:to="{ name: 'postview', params: {postId: post_id}}">Read More</router-link>
 </article>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     return {}
   },
   props: {
-    time: {
+    date: {
       type: String,
       default: '2008-1-1 10:00'
     },
@@ -27,7 +27,7 @@ export default {
       type: String,
       default: ''
     },
-    postId: {
+    post_id: {
       type: Number,
       default: 1
     }
@@ -35,7 +35,7 @@ export default {
   computed: {
     first_paragraph () {
       const firstP = this.content.match(/^(<p>.*?<\/p>)/)
-      return firstP[0]
+      return (firstP && firstP[0]) || this.content
     }
   },
   components: {

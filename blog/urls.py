@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('ayase_blog.urls', namespace='ayase_blog')),
+    path('api/v1/', include('ayase_blog.urls', namespace='ayase_blog')),
     path('admin/', admin.site.urls),
 ]

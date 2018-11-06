@@ -1,25 +1,29 @@
 <template>
-  <div ref="pageListWrapper" v-on:scroll="onScroll" v-dynamic-title="`Ayase-blog`">
+  <div ref="pageListWrapper" v-on:scroll="onScroll">
+    <loading :active.sync="isLoading" :is-full-page="true"></loading>
     <page-item v-for="page in pageList" v-bind:key="page.link" v-bind="page"></page-item>
-    <p v-if="noMorePage"> ~~ No more page ~~</p>
+    <p class="page-list-no-more" v-if="noMorePage"> ~~ No more page ~~</p>
   </div>
 </template>
 
 <script>
 import PageItem from './PageItem'
 import { mapState, mapActions } from 'vuex'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 import _ from 'lodash'
 
 export default {
   data: function () {
     return {
+      isLoading: true
     }
   },
   computed: {
     ...mapState('page', ['pageList', 'noMorePage'])
   },
   components: {
-    PageItem
+    PageItem, Loading
   },
   methods: {
     ...mapActions('page', [
@@ -39,10 +43,17 @@ export default {
     }
   },
   created () {
-    this.getMorePage()
+    this.getMorePage().then(() => {
+      this.isLoading = false
+    })
   }
 }
 </script>
 
 <style lang="less">
+.page-list-no-more {
+  background-color: #FFF;
+  padding: 30px;
+  text-align: center;
+}
 </style>

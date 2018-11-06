@@ -44,7 +44,7 @@ export const PageModule = {
       let selectedPost = posts.find((post) => {
         return post.link === link
       })
-      import('lodash').then(async (_) => {
+      return import('lodash').then(async (_) => {
         if(_.isEmpty(selectedPost)) {
           try {
             selectedPost = await apiClient.getPageByLink(link)
@@ -53,6 +53,7 @@ export const PageModule = {
           }
         }
         ctx.commit('setPageUnderView', selectedPost)
+        return selectedPost
       })
     }
   }

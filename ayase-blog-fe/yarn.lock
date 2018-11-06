@@ -7579,6 +7579,11 @@ vue-loader@14.2.2:
     vue-style-loader "^4.0.1"
     vue-template-es2015-compiler "^1.6.0"
 
+vue-loading-overlay@^3.1.0:
+  version "3.1.0"
+  resolved "http://registry.npm.taobao.org/vue-loading-overlay/download/vue-loading-overlay-3.1.0.tgz#ae308e548035f14ce72648817d180dcce02321dd"
+  integrity sha1-rjCOVIA18UznJkiBfRgNzOAjId0=
+
 vue-router@^3.0.1:
   version "3.0.1"
   resolved "http://registry.npm.taobao.org/vue-router/download/vue-router-3.0.1.tgz#d9b05ad9c7420ba0f626d6500d693e60092cc1e9"

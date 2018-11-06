@@ -35,7 +35,7 @@ export default {
       this.login({ username, password }).then(() => {
         this.$router.replace('/dashboard/')
       }).catch((err) => {
-        this.$message.error('Username or password is wrong. Please check ~')
+        this.$message.error(err.toString())
       })
     },
     ...mapActions('auth', [

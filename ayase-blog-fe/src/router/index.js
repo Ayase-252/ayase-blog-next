@@ -5,6 +5,9 @@ const PageList = () => import('@/components/page_list/PageList')
 const PageDisplay = () => import('@/components/page_display/PageDisplay')
 const AdminLogin = () => import('@/components/admin_login/AdminLogin')
 const DashBoard = () => import('@/components/dashboard/DashBoard')
+const DashBoardHomePage = () =>
+  import('@/components/dashboard/DashBoardHomePage')
+
 import PostEditor from '@/components/dashboard/PostEditor'
 import store from '../store'
 
@@ -50,13 +53,22 @@ const router = new Router({
         requireLogin: true,
         title: 'Dashboard | Ayase-blog'
       },
-      children: [{
-        path: 'post',
-        component: PostEditor,
-        meta: {
-          title: 'New Post | Ayase-blog'
+      children: [
+        {
+          path: '',
+          component: DashBoardHomePage,
+          meta: {
+            title: 'Dashboard | Ayase-blog'
+          }
+        },
+        {
+          path: 'post',
+          component: PostEditor,
+          meta: {
+            title: 'New Post | Ayase-blog'
+          }
         }
-      }]
+      ]
     }
   ]
 })
@@ -67,7 +79,16 @@ router.beforeEach((to, from, next) => {
     to.matched.some(record => record.meta.requireLogin) &&
     !store.state.auth.isLoggedIn
   ) {
-    next('/login/')
+    store
+      .dispatch('auth/validateExistingSession')
+      .then(() => {
+        // Session is valid
+        next()
+      })
+      .catch(() => {
+        // Session is invalid
+        next('/login/')
+      })
   } else {
     next()
   }

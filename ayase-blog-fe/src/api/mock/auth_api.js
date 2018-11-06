@@ -4,11 +4,19 @@ import { delay } from './utils'
 
 function AuthenticateUser(username, password) {
   return delay((resolve, reject) => {
-    if (users.findIndex((user) => {
+    const userIdx = users.findIndex((user) => {
       return user.username === username && user.password === password
-    }) !== -1) {
+    })
+    if (userIdx !== -1){
+      const user = users[userIdx]
       resolve({
-        username
+        userInfo: {
+          username: user.username,
+        },
+        session: {
+          sessionId: user.sessionId,
+          expiredAt: Date.now().valueOf() + 3600 * 1000
+        }
       })
     } else {
       reject('Authentication Error')
@@ -30,7 +38,8 @@ function ValidateSession(sessionId) {
 }
 
 const AuthAPI = {
-  AuthenticateUser
+  AuthenticateUser,
+  ValidateSession
 }
 
 export default AuthAPI

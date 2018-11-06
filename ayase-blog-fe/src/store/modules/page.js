@@ -4,26 +4,19 @@ export const PageModule = {
   namespaced: true,
   state: {
     pageList: [],
-    curPage: {},
     noMorePage: false,
-    nextPostsUrl: 'posts/'
+    pageUnderViewing: {}
   },
   mutations: {
     addPagesToList (state, pages) {
       state.pageList.push(...pages)
     },
-    setPageAsCurPage (state, curPage) {
-      state.curPage = curPage
-    },
-    setNextPageIdx (state, idx) {
-      state.nextPageIdx = idx
-    },
     setNoMorePage (state, val) {
       state.noMorePage = val
     },
-    setNextPostsUrl (state, val) {
-      state.nextPostsUrl = val
-    },
+    setPageUnderView (state, page) {
+      state.pageUnderViewing = page
+    }
   },
   actions: {
     async getMorePage (ctx, payload) {
@@ -45,9 +38,21 @@ export const PageModule = {
         console.log(err)
       }
     },
-    setCurrPage (context, payload) {
-      context.commit('setPageAsCurPage', {
-        curPage: payload.curPage
+    
+    async setPageUnderView (ctx, link) {
+      const posts = ctx.state.pageList
+      let selectedPost = posts.find((post) => {
+        return post.link === link
+      })
+      import('lodash').then(async (_) => {
+        if(_.isEmpty(selectedPost)) {
+          try {
+            selectedPost = await apiClient.getPageByLink(link)
+          } catch (err) {
+            console.log(err)
+          }
+        }
+        ctx.commit('setPageUnderView', selectedPost)
       })
     }
   }

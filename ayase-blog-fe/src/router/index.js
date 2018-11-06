@@ -20,29 +20,42 @@ const router = new Router({
         {
           path: '',
           name: 'homepage',
-          component: PageList
+          component: PageList,
+          meta: {
+            title: 'Ayase-blog'
+          }
         },
         {
           path: 'posts/:postLink',
           name: 'postview',
           component: PageDisplay,
-          props: true
+          props: true,
+          meta: {
+            title: 'Post | Ayase-blog'
+          }
         }
       ]
     },
     {
       path: '/login/',
-      component: AdminLogin
+      component: AdminLogin,
+      meta: {
+        title: 'Login | Ayase-blog'
+      }
     },
     {
       path: '/dashboard/',
       component: DashBoard,
       meta: {
         // requireLogin: true
+        title: 'Dashboard | Ayase-blog'
       },
       children: [{
         path: 'post',
-        component: PostEditor
+        component: PostEditor,
+        meta: {
+          title: 'New Post | Ayase-blog'
+        }
       }]
     }
   ]
@@ -58,6 +71,12 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
+})
+
+// Modify title according to value specified in meta of route
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
 })
 
 export default router

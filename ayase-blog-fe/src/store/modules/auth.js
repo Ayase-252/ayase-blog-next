@@ -1,24 +1,29 @@
 // import ajax from '@/api/ajax'
+import apiClient from 'api-client'
+
+const AuthAPI = apiClient.AuthAPI
 
 export const AuthModule = {
   namespaced: true,
   state: {
-    isLoggedIn: false
+    isLoggedIn: false,
+    userInfo: {}
   },
-//   mutations: {
-//     setLoggedIn(state) {
-//       state.isLoggedIn = true
-//     }
-//   },
-//   actions: {
-//     checkSession(ctx, payload) {
-//       ajax.get('/api/sessions/')
-//         .then( res => {
-//           ctx.commit('setLoggedIn')
-//         })
-//         .catch( err => {
-//           console.log('session invalid')
-//         })
-//     }
-//   }
+  mutations: {
+    setUserLoggedIn(state, userInfo) {
+      state.isLoggedIn = true
+      state.userInfo = userInfo
+    }
+  },
+  actions: {
+    async login (ctx, { username, password }) {
+      try {
+        const userInfo = await AuthAPI.AuthenticateUser(username, password)
+        console.log(userInfo)
+        ctx.commit('setUserLoggedIn', userInfo)
+      } catch (err) {
+        throw err
+      }
+    }
+  }
 }

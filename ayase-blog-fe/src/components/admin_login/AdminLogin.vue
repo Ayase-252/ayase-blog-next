@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions } from 'vuex'
 
 export default {
   data () {
@@ -31,22 +31,16 @@ export default {
       this.loginForm.password = ''
     },
     submit () {
-      axios.post('http://localhost:8100/api/sessions/', {
-        username: this.loginForm.username,
-        password: this.loginForm.password,
-        duration: 3600
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      const { username, password } = this.loginForm
+      this.login({ username, password }).then(() => {
+        this.$router.replace('/dashboard/')
+      }).catch((err) => {
+        this.$message.error('Username or password is wrong. Please check ~')
       })
-        .then((res) => {
-          console.log('LOGGED IN')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
+    },
+    ...mapActions('auth', [
+      'login'
+    ])
   }
 }
 </script>

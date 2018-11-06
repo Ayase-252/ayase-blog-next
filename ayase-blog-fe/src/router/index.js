@@ -47,7 +47,7 @@ const router = new Router({
       path: '/dashboard/',
       component: DashBoard,
       meta: {
-        // requireLogin: true
+        requireLogin: true,
         title: 'Dashboard | Ayase-blog'
       },
       children: [{

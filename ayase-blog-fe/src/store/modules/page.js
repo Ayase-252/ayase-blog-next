@@ -1,5 +1,4 @@
-import PageApi from '@/api/page_api'
-import ajax from '@/api/ajax'
+import apiClient from 'api-client'
 
 export const PageModule = {
   namespaced: true,
@@ -10,8 +9,8 @@ export const PageModule = {
     nextPostsUrl: 'posts/'
   },
   mutations: {
-    addPageToList (state, page) {
-      state.pageList.push(page)
+    addPagesToList (state, pages) {
+      state.pageList.push(...pages)
     },
     setPageAsCurPage (state, curPage) {
       state.curPage = curPage
@@ -24,38 +23,26 @@ export const PageModule = {
     },
     setNextPostsUrl (state, val) {
       state.nextPostsUrl = val
-    }
+    },
   },
   actions: {
-    getPage (context, payload) {
-      PageApi.requestPage(context.state.nextPageIdx)
-        .then(res => {
-          context.commit('addPageToList', {
-            page: {
-              title: res.data.title,
-              postId: res.data.postId,
-              content: res.data.content,
-              pubTime: res.data.pub_time
-            }
-          })
-          context.commit('setNextPageIdx', res.data.postId - 1)
-        })
-        .catch(error => {
-          payload.onError(error)
-        })
-    },
-    getMorePage (context, payload) {
-      if (context.state.nextPostsUrl !== '') {
-        ajax.get(context.state.nextPostsUrl)
-          .then(res => {
-            context.commit('setNextPostsUrl', res.data.next || '')
-            for (const post of res.data.results) {
-              context.commit('addPageToList', post)
-            }
-          })
-          .catch(err => {
-            console.log(err)
-          })
+    async getMorePage (ctx, payload) {
+      try {
+        const posts = ctx.state.pageList
+        let morePosts;
+        if(posts.length){
+          const linkOfLastPage = posts[posts.length - 1].link
+          morePosts = await apiClient.getPagesByLastLink(linkOfLastPage, 10)
+        } else {
+          morePosts = await apiClient.getPages(10)
+        }
+        if(!morePosts.length) {
+          ctx.commit('setNoMorePage', true)
+        } else {
+          ctx.commit('addPagesToList', morePosts)
+        }
+      } catch (err) {
+        console.log(err)
       }
     },
     setCurrPage (context, payload) {

@@ -1,6 +1,7 @@
 <template>
   <div ref="pageListWrapper" v-on:scroll="onScroll" v-dynamic-title="`Ayase-blog`">
-    <page-item v-for="(page, idx) in pageList" v-bind:key="idx" v-bind="page"></page-item>
+    <page-item v-for="page in pageList" v-bind:key="page.link" v-bind="page"></page-item>
+    <p v-if="noMorePage"> ~~ No more page ~~</p>
   </div>
 </template>
 
@@ -15,7 +16,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('page', ['pageList'])
+    ...mapState('page', ['pageList', 'noMorePage'])
   },
   components: {
     PageItem
@@ -30,11 +31,7 @@ export default {
       const clientHeight = pageListWrapper.clientHeight
       const scrollHeight = pageListWrapper.scrollHeight
       if (scrollHeight - (scrollTop + clientHeight) < 50) {
-        this.getMorePage({
-          onError (err) {
-            console.log(err)
-          }
-        })
+        this.getMorePage()
       }
     }, 500),
     onScroll (event) {

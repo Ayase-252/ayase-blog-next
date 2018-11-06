@@ -1,8 +1,8 @@
 <template>
   <div>
     <article class="page-display" v-dynamic-title="`${title} | Ayase-blog`">
-      <base-page-header v-bind="{time, title}"></base-page-header>
-      <base-page-content v-bind:content="content"></base-page-content>
+      <base-page-header v-bind="{time: selectedPage.createdAt, title: selectedPage.title}"></base-page-header>
+      <base-page-content v-bind:content="selectedPage.content"></base-page-content>
     </article>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 import BasePageContent from '../base_components/BasePageContent'
 import BasePageHeader from '../base_components/BasePageHeader'
-import PageApi from '../../api/page_api'
+import { mapState } from 'vuex'
 
 export default {
   data: function () {
@@ -21,21 +21,21 @@ export default {
     }
   },
   props: {
-    postId: {
-      type: Number
+    postLink: {
+      type: String
     }
   },
   components: {
     BasePageContent, BasePageHeader
   },
-  created () {
-    const vm = this
-    PageApi.requestPage(this.postId).then(function (res) {
-      vm.title = res.data.title
-      vm.content = res.data.content
-    }).catch(function (err) {
-      console.log(err)
-    })
+  computed: {
+    selectedPage () {
+      console.log(this.pageList)
+      return this.pageList.find((post) => {
+        return post.link === this.postLink
+      })
+    },
+    ...mapState('page', ['pageList'])
   }
 }
 </script>

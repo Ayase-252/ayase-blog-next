@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+import PostEditor from '@/components/dashboard/PostEditor'
+import store from '../store'
 const Layout = () => import('@/components/Layout')
 const PageList = () => import('@/components/page_list/PageList')
 const PageDisplay = () => import('@/components/page_display/PageDisplay')
@@ -7,9 +10,6 @@ const AdminLogin = () => import('@/components/admin_login/AdminLogin')
 const DashBoard = () => import('@/components/dashboard/DashBoard')
 const DashBoardHomePage = () =>
   import('@/components/dashboard/DashBoardHomePage')
-
-import PostEditor from '@/components/dashboard/PostEditor'
-import store from '../store'
 
 Vue.use(Router)
 

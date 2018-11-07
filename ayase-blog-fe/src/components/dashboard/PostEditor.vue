@@ -46,8 +46,8 @@ export default {
         content: ''
       },
       formRules: {
-        title: { required: true, message: "Title cannot be empty", trigger: "blur"},
-        link: { required: true, message: "Link cannot be empty", trigger: "blur" }
+        title: { required: true, message: 'Title cannot be empty', trigger: 'blur' },
+        link: { required: true, message: 'Link cannot be empty', trigger: 'blur' }
       }
     }
   },

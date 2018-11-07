@@ -1,5 +1,5 @@
-const postMock = require('./data/posts.json')
 import { delay } from './utils'
+const postMock = require('./data/posts.json')
 
 function getPagesByLastLink (fromLink, numPages) {
   return delay((resolve, reject) => {
@@ -10,7 +10,7 @@ function getPagesByLastLink (fromLink, numPages) {
   }, 1000)
 }
 
-function getPageByLink(link) {
+function getPageByLink (link) {
   return delay((resolve, reject) => {
     const selected = postMock.find(post => {
       return post.link === link

@@ -11,8 +11,8 @@
 <script>
 import BasePageContent from '../base_components/BasePageContent'
 import BasePageHeader from '../base_components/BasePageHeader'
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 import { mapState, mapActions } from 'vuex'
 
 export default {

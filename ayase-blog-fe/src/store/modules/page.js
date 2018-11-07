@@ -24,14 +24,14 @@ export const PageModule = {
     async getMorePage (ctx, payload) {
       try {
         const posts = ctx.state.pageList
-        let morePosts;
-        if(posts.length){
+        let morePosts
+        if (posts.length) {
           const linkOfLastPage = posts[posts.length - 1].link
           morePosts = await PageAPI.getPagesByLastLink(linkOfLastPage, 10)
         } else {
           morePosts = await PageAPI.getPages(10)
         }
-        if(!morePosts.length) {
+        if (!morePosts.length) {
           ctx.commit('setNoMorePage', true)
         } else {
           ctx.commit('addPagesToList', morePosts)
@@ -40,14 +40,14 @@ export const PageModule = {
         console.log(err)
       }
     },
-    
+
     async setPageUnderView (ctx, link) {
       const posts = ctx.state.pageList
       let selectedPost = posts.find((post) => {
         return post.link === link
       })
       return import('lodash').then(async (_) => {
-        if(_.isEmpty(selectedPost)) {
+        if (_.isEmpty(selectedPost)) {
           try {
             selectedPost = await PageAPI.getPageByLink(link)
           } catch (err) {

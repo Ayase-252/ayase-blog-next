@@ -9,8 +9,8 @@
 <script>
 import PageItem from './PageItem'
 import { mapState, mapActions } from 'vuex'
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 import _ from 'lodash'
 
 export default {

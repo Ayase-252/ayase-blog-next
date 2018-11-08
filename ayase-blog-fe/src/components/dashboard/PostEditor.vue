@@ -8,12 +8,12 @@
     </template>
     <template slot="content">
       <div class="post-editor-form-wrapper">
-        <el-form label-width="50px" :rules="formRules">
+        <el-form label-width="50px" :rules="formRules" :model="post">
           <el-form-item label="Title" prop="title">
             <el-input v-model="post.title"></el-input>
           </el-form-item>
           <el-form-item label="Link" prop="link">
-            <el-input v-model="post.linkTitle"></el-input>
+            <el-input v-model="post.link"></el-input>
           </el-form-item>
           <el-form-item label="Tags">
             <el-input v-model="post.tags"></el-input>
@@ -34,6 +34,7 @@
 <script>
 import MavonEditor from 'mavon-editor'
 import DashBoardContent from './DashBoardContent'
+import apiClient from 'api-client'
 import 'mavon-editor/dist/css/index.css'
 
 export default {
@@ -41,7 +42,7 @@ export default {
     return {
       post: {
         title: '',
-        linkTitle: '',
+        link: '',
         tags: '',
         content: ''
       },
@@ -57,12 +58,17 @@ export default {
   },
   methods: {
     onSubmit () {
-      console.log(JSON.stringify({
-        title: this.post.title,
-        linkTitle: this.post.linkTitle,
-        tags: this.post.tags,
-        content: this.post.content
-      }))
+      apiClient.PageAPI.postNewPage(this.post).then(() => {
+        this.$message({
+          message: 'Success',
+          type: 'success'
+        })
+      }).catch((err) => {
+        this.$message({
+          message: err,
+          type: 'error'
+        })
+      })
     },
     onReset () {
       Object.assign(this.post, this.$options.data().post)

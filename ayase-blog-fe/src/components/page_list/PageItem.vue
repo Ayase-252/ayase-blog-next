@@ -2,7 +2,7 @@
 <article class="page-item">
     <base-page-header v-bind="{title, date}"></base-page-header>
     <base-page-content v-bind:content="first_paragraph"></base-page-content>
-    <router-link class="post-btn page-item-footer" v-bind:to="{ name: 'postview', params: {postId: post_id}}">Read More</router-link>
+    <router-link class="post-btn page-item-footer" v-bind:to="{ name: 'postview', params: {postLink: link}}">Read More</router-link>
 </article>
 </template>
 
@@ -27,9 +27,9 @@ export default {
       type: String,
       default: ''
     },
-    post_id: {
-      type: Number,
-      default: 1
+    link: {
+      type: String,
+      default: ''
     }
   },
   computed: {

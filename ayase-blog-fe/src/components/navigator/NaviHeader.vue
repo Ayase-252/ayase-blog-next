@@ -1,6 +1,6 @@
 <template>
   <div class="navigator-header">
-    <h1><a href="#">{{title}}</a></h1>
+    <h1><router-link to="/">{{title}}</router-link></h1>
     <ul>
       <li v-for="(navItem, idx) in navItems" v-bind:key="idx">
         <a v-bind:href="navItem.link">{{navItem.name}}</a>

@@ -1,8 +1,9 @@
 <template>
   <div>
-    <article class="page-display" v-dynamic-title="`${title} | Ayase-blog`">
-      <base-page-header v-bind="{time, title}"></base-page-header>
-      <base-page-content v-bind:content="content"></base-page-content>
+    <loading :active.sync="isLoading" :is-full-page="true"></loading>
+    <article class="page-display">
+      <base-page-header v-bind="{time: selectedPage.createdAt, title: selectedPage.title}"></base-page-header>
+      <base-page-content v-bind:content="selectedPage.content"></base-page-content>
     </article>
   </div>
 </template>
@@ -10,31 +11,38 @@
 <script>
 import BasePageContent from '../base_components/BasePageContent'
 import BasePageHeader from '../base_components/BasePageHeader'
-import PageApi from '../../api/page_api'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data: function () {
     return {
-      time: '',
-      title: '',
-      content: ''
+      isLoading: true
     }
   },
   props: {
-    postId: {
-      type: Number
+    postLink: {
+      type: String
     }
   },
   components: {
-    BasePageContent, BasePageHeader
+    BasePageContent, BasePageHeader, Loading
+  },
+  computed: {
+    ...mapState('page', {
+      selectedPage: 'pageUnderViewing'
+    })
+  },
+  methods: {
+    ...mapActions('page', [
+      'setPageUnderView'
+    ])
   },
   created () {
-    const vm = this
-    PageApi.requestPage(this.postId).then(function (res) {
-      vm.title = res.data.title
-      vm.content = res.data.content
-    }).catch(function (err) {
-      console.log(err)
+    this.setPageUnderView(this.postLink).then((res) => {
+      document.title = `${this.selectedPage.title} | Ayase-blog`
+      this.isLoading = false
     })
   }
 }
